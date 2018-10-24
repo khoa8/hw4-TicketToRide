@@ -5,6 +5,9 @@
  */
 package model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author nguyenminhkhoa
@@ -15,16 +18,23 @@ public class Player {
     private String color;
     private int trains; //number of train cars;
     private String[] trainCard, ticketCard;
-    
+    private final List<TrainCard> hand;
     //initialize player with name, score, assign random color trains
-    public Player(){
-        //
+    
+
+    public Player() {
+        this.hand = new ArrayList<TrainCard>();
     }
     
-    //method to show the Train cards & Ticket Cards holding
-    //(should this part be in View package?) 
-    public void Display(){
-        System.out.println();
+    public List<TrainCard> getHand() {
+        return hand;
+    }
+
+    @Override
+    public String toString() {
+        return "Player{" +
+                "hand=" + hand +
+                '}';
     }
    
     //method to add score

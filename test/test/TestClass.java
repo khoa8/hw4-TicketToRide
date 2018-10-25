@@ -48,4 +48,17 @@ public class TestClass {
         assertFalse(player.endOfGame());
     }
     
+    @Test
+    public void endGame() {
+        //test case for endOfGame() method from Player.class
+        player.setTrains(2);
+        assertTrue(player.endOfGame());
+    }
+    
+    @Test
+    public void fullDeck() {
+        //test case for getSizeOfDeck() method from TrainCardDeck.class
+        assertEquals(110, deck.getSizeOfDeck());
+    }
+
 }

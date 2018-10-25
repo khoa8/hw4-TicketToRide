@@ -64,6 +64,10 @@ public class Player {
         return trains < 3;
     }
     
+    public void setTrains(int num){
+        this.trains = num;
+    }
+    
     public void end(){
         //update number of trains left;
         endOfGame();

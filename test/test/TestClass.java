@@ -5,6 +5,11 @@
  */
 package test;
 
+import java.util.ArrayList;
+import java.util.List;
+import model.Player;
+import model.TrainCard;
+import model.TrainCardDeck;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -18,28 +23,29 @@ import org.junit.Test;
  */
 public class TestClass {
     
+    private TrainCardDeck deck;
+    private Player player;
+    
     public TestClass() {
     }
     
     @Before
     public void setUp() {
-        //
+        deck = new TrainCardDeck();
+        player = new Player();
     }
 
     @Test
     public void emptyDeck() {
         //test case for isEmpty() method from TrainCardDeck.class
+        deck.discard();
+        assertTrue(deck.deckIsEmpty());
     }
     
     @Test
-    public void endGame() {
-        //test case for end() method from Player.class
-    }
-    
-    @Test
-    public void longestPath() {
-        //test case for checkLongest() method from Player.class
+    public void notEndGame() {
+        //test case for endOfGame() method from Player.class
+        assertFalse(player.endOfGame());
     }
     
 }
-

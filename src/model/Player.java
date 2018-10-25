@@ -6,56 +6,67 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 /**
  *
  * @author nguyenminhkhoa
  */
+enum CAR {
+     BLUEcar, YELLOWcar, BLACKcar, REDcar, GREENcar;
+}
+
 public class Player {
     
     private int score;
-    private String color;
+    private String name;
     private int trains; //number of train cars;
-    private String[] trainCard, ticketCard;
     private final List<TrainCard> hand;
-    //initialize player with name, score, assign random color trains
+    //private static final List<CAR> train = new ArrayList<>();
+    //private static final int SIZE = train.size();
+    //private static final Random rand = new Random();
     
-
-    public Player() {
-        this.hand = new ArrayList<TrainCard>();
+    
+    //initialize player with name, score, assign random color trains
+    public Player(){
+        this.hand = new ArrayList<>();
+        //train.addAll(Arrays.asList(CAR.values()));
+        this.name = "A"; 
+        score = 0;
+        trains = 45;
     }
     
-    public List<TrainCard> getHand() {
+    public List<TrainCard> getHand(){
         return hand;
     }
 
     @Override
     public String toString() {
-        return "Player{" +
-                "hand=" + hand +
-                '}';
+        return "Player " + name + " {" +
+                "hand=" + hand + "}";
     }
    
     //method to add score
-    public void addScore(int score1){
-        //
+    public void addScore(int score){
+        this.score += score; 
     }
     
     //method to subtract score if not finishing missions when game ends
-    public void subtractScore(int score1){
-        //
+    public void subtractScore(int score){
+        this.score -= score;
     }
     
-    //check for the longest path, if yes return true
-    public boolean checkLongest(){
-        return false;
+    //When player’s stock of colored trains gets down 
+    //to less than 3 trains at the end of turn, the game is going to end.
+    public boolean endOfGame(){
+        return trains < 3;
     }
     
-    //check for the longest path, if yes return true
     public void end(){
         //update number of trains left;
-        checkLongest();
+        endOfGame();
         //check whether the missions finish or not to update score;
         //calculate final score;
     }

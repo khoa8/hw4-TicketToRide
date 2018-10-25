@@ -1,44 +1,46 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package model;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import static model.VALUE.RAINBOW;
 /**
  *
  * @author nguyenminhkhoa
  */
-public class TrainCardDeck {
+public class TrainCardDeck{
     
-    static List<TrainCard> cardDeck;
-    private TrainCard[] trainCard, usedTrainCard;
+    private static List<TrainCard> cardDeck;
     
     //initialize and create the deck of train card
     
     public TrainCardDeck(){
         this.cardDeck = new ArrayList<>();
-        for(int value = 1 ; value <= 9 ; value++){
-            for(COLOR color : COLOR.values()){
-             cardDeck.add(new TrainCard(value,color));
+        
+    //110 Train Car cards (12 each of Box-PINK, Passenger-WHITE, Tanker-BLUE, Reefer-YELLOW, 
+    //Freight-ORANGE, Hopper-BLACK, Coal-RED, Caboose-GREEN, plus 14 Locomotives-RAINBOW)
+    
+        for(int i = 1 ; i <= 12 ; i++){
+            for(VALUE color : VALUE.values()){
+             cardDeck.add(new TrainCard(color));
             }
         }
+        cardDeck.add(new TrainCard(RAINBOW));
+        cardDeck.add(new TrainCard(RAINBOW));
     }
     
     //method to shuffle the deck
-    public static void shuffle(TrainCard[] traincard, int numberOfCurrentCard){ 
-           
-        Random rand = new Random();
-        for(int i = 0 ; i < 144 ; i++){
-            int firstCard = rand.nextInt(144);
-            int secondCard = rand.nextInt(144);
+    public static void shuffle(){ 
+         
+        Collections.shuffle(cardDeck);
+        /*Random rand = new Random();
+        for(int i = 0 ; i < 110 ; i++){
+            int firstCard = rand.nextInt(110);
+            int secondCard = rand.nextInt(110);
             Collections.swap(cardDeck,firstCard,secondCard);
-            //Collections.shuffle(cardDeck);
-        }
+        }*/
     }
     
     //method to draw the card from deck
@@ -60,16 +62,22 @@ public class TrainCardDeck {
         return cardDeck.size();
     }
     
+    //Discard the deck for testing purpose
+    public void discard(){
+        for(int i = 1 ; i <= 110 ; i++) cardDeck.remove(i);
+    }
     
-    //method to collect used train cards for reuse purpose when needed
-    public TrainCard usedCard(TrainCard[] usedtraincard, TrainCard card){
+    
+    //method to return used train cards for reuse purpose when needed
+    public TrainCard usedCard(){
        TrainCard removedCard = cardDeck.remove(0);
        return removedCard;
     }
     
     // return true if there are no cards left in the deck
-    public boolean isEmpty(){
-        if (getSizeOfDeck() > 0) return true;
-        return false;
+    public boolean deckIsEmpty(){
+        if (getSizeOfDeck() > 0) return false;
+        return true;
     }
+
 }

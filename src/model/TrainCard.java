@@ -9,6 +9,18 @@ package model;
  *
  * @author nguyenminhkhoa
  */
-class TrainCard {
-    
+enum VALUE {
+     PINK, WHITE, BLUE, YELLOW, ORANGE, BLACK, RED, GREEN, RAINBOW;
+}
+
+public class TrainCard {
+    private VALUE color;
+
+
+    public TrainCard(){
+    }       
+
+    public TrainCard(VALUE color){
+        this.color = color;
+    }
 }
